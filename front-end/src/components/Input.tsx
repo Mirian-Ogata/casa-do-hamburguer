@@ -1,0 +1,9 @@
+const Input = (props: React.InputHTMLAttributes<HTMLInputElement>) => {
+  return (
+    <input
+      {...props}
+      className="w-[350px] rounded-md bg-white p-2.5 text-xs text-[#32343E] outline-none placeholder:text-[#32343E]"
+    />
+  );
+};
+export default Input;
