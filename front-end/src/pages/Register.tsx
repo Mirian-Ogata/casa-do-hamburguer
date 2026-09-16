@@ -102,7 +102,7 @@ const Register = () => {
         </div>
         <Button title="Criar conta" />
         <Link to="/login" className="w-full">
-          <Button title="Já  tenho uma conta" variant="outline" />
+          <Button title="Já  tenho uma conta" variant="outline-orange" />
         </Link>
       </div>
     </form>

@@ -52,7 +52,6 @@ const Login = () => {
         setUser(data);
       }
     } catch (error) {
-      console.log(error);
       return;
     }
   }
@@ -79,9 +78,9 @@ const Login = () => {
           />
           <p className="text-left text-xs text-red-600">{error}</p>
         </div>
-        <Button title="Login" variant="default" type="submit" />
+        <Button title="Login" variant="default-orange" type="submit" />
         <Link to="/register" className="w-full">
-          <Button title="Não tenho uma conta" variant="outline" />
+          <Button title="Não tenho uma conta" variant="outline-orange" />
         </Link>
       </div>
     </form>
