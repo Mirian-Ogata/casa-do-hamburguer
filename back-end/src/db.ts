@@ -8,7 +8,7 @@ const adapter = new PrismaPg({ connectionString });
 const prisma = new PrismaClient({ adapter });
 
 // Forma antiga de utilizar o PrismaClient
-// cost prisama = new PrismaClient();
+// cost prisma = new PrismaClient();
 
 export { prisma };
 

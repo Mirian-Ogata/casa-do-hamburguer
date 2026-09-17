@@ -7,10 +7,21 @@ datasource db {
   provider = "postgresql"
 }
 
-model User{
-  id String @id @default (uuid())
-  name String
-  email String @unique
+model User {
+  id       String  @id @default(uuid())
+  name     String
+  email    String  @unique
+  admin    Boolean @default(false)
+  cep      String
   password String
-  cep String 
-} 
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  price       Int
+  category String 
+  img         String
+  createdAt   DateTime @default(now())
+}

@@ -1,14 +1,14 @@
 import { Link, useLocation } from "react-router";
 import Button from "./Button";
 import { UserContext } from "../context/UserContext";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Box, LayoutGrid, LogOut, Plus, ShoppingCart } from "lucide-react";
+import Cart from "./Cart";
 
 const Header = () => {
+  const [showCart, setShowCart] = useState<boolean>(false);
   const { user, setUser } = useContext(UserContext);
   const location = useLocation();
-
-  console.log(location.pathname);
 
   const handleAuthUser = async () => {
     try {
@@ -59,6 +59,7 @@ const Header = () => {
   };
   return (
     <div className="bg-[#161410]">
+      {showCart && <Cart setShowCart={setShowCart} showCart={showCart} />}
       <div className="mx-auto flex w-full items-center justify-between p-3 md:w-[737px]">
         <Link to="/">
           <img src="./logo.svg" alt="Casa do Hamburguer" />
@@ -86,7 +87,11 @@ const Header = () => {
             )}
 
             <div className="relative cursor-pointer">
-              <ShoppingCart size={18} color="white" />
+              <ShoppingCart
+                size={18}
+                color="white"
+                onClick={() => setShowCart(!showCart)}
+              />
               <p className="absolute -top-3 -right-3 flex h-4 w-4 items-center justify-center rounded-full bg-[#F2DAAC] text-[#161410]">
                 1
               </p>

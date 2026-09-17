@@ -1,7 +1,14 @@
 import { Router } from "express";
-import { login, register } from "./controller/user-controller.js";
+import { auth, login, logOut, register } from "./controller/user-controller.js";
+import { authMiddleware } from "./middlewares/aurh-middleware.js";
+import { deleteProduct, getProducts } from "./controller/product-controller.js";
 
 export const router = Router();
 
 router.post("/login", login);
 router.post("/register", register);
+router.get("/me", authMiddleware, auth);
+router.post("/logout", authMiddleware, logOut);
+
+router.get("/products", getProducts);
+router.delete("/delete-product/:id", authMiddleware, deleteProduct);

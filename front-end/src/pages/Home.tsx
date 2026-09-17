@@ -84,6 +84,7 @@ const Home = () => {
             category={product.category}
             img={product.img}
             key={product.id}
+            setProducts={setProducts}
           />
         ))}
         {filterProduct.length === 0 && <p>Não há produtos cadastrados</p>}
