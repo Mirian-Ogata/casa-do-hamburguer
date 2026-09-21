@@ -1,15 +1,16 @@
 import { X } from "lucide-react";
 import Button from "./Button";
 import CartItem from "./CartItem";
-import { useEffect, useState } from "react";
-import type { CartItemType } from "../types/CartItem";
+import { useContext, useEffect } from "react";
+import { CartItemContext } from "../context/CartItemContext";
 
 type CartTypeProps = {
   setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
   showCart: boolean;
 };
 const Cart = ({ setShowCart, showCart }: CartTypeProps) => {
-  const [cartItems, setCartItems] = useState<CartItemType[]>([]);
+  // const [cartItems, setCartItems] = useState<CartItemType[]>([]);
+  const { cartItems, setCartItems } = useContext(CartItemContext);
 
   const getCartItems = async () => {
     try {
@@ -34,7 +35,7 @@ const Cart = ({ setShowCart, showCart }: CartTypeProps) => {
   }, []);
 
   return (
-    <div className="absolute right-0 z-1 flex h-screen w-[375px] flex-col bg-[#F2DAAC] p-5">
+    <div className="absolute right-0 z-1 flex h-screen w-93.75 flex-col bg-[#F2DAAC] p-5">
       <div className="flex items-center justify-between text-[#161410]">
         <X
           size={24}

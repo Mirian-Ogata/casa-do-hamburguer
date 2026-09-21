@@ -1,11 +1,11 @@
 import { Link } from "react-router";
 import { useEffect, useState } from "react";
 import Product from "../components/Product";
-import type { ProductsType } from "../types/Products";
+import type { ProductType } from "../types/Products";
 
 const Home = () => {
   const [category, setCategory] = useState("Hamburguer");
-  const [products, setProducts] = useState<ProductsType[]>([]);
+  const [products, setProducts] = useState<ProductType[]>([]);
 
   const handleChangeCategory = (newCategory: string) => {
     setCategory(newCategory);
@@ -42,7 +42,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="mx-auto flex w-full flex-col p-3 text-white md:w-[737px]">
+    <div className="mx-auto flex w-full flex-col p-3 text-white md:w-184.25">
       <div className="flex gap-2">
         <Link to="">
           <div

@@ -6,3 +6,7 @@ export type CartItemType = {
   productId: string;
   product: ProductType;
 };
+export type CartItemsContectType = {
+  cartItems: CartItemType[];
+  setCartItems: React.Dispatch<React.SetStateAction<CartItemType[]>>;
+};

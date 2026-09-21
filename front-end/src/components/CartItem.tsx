@@ -10,7 +10,7 @@ type CartItemType = {
 const CartItem = ({ title, price, img, id }: CartItemType) => {
   return (
     <div className="flex items-center gap-3">
-      <img src={`./produtos/${img}`} alt="" className="w-[100px]" />
+      <img src={`./produtos/${img}`} alt="" className="w-25" />
       <div className="flex-1">
         <p className="text-sm font-bold uppercase">{title}</p>
         <p className="text-sm font-bold text-[#32343E]">
