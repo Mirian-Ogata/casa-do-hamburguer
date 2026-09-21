@@ -1,5 +1,5 @@
 import { ShoppingCart } from "lucide-react";
-import type { ProductsType } from "../types/Products";
+import type { ProductType } from "../types/Products";
 import { formatterPrice } from "../util/formatterPrice";
 import Button from "./Button";
 import { useContext } from "react";
@@ -13,7 +13,7 @@ const Product = ({
   category,
   img,
   setProducts,
-}: ProductsType) => {
+}: ProductType) => {
   const { user } = useContext(UserContext);
   const handleDeleteProduct = async (id: string) => {
     try {
@@ -42,7 +42,7 @@ const Product = ({
       const response = await fetch("http://localhost:3000/products");
 
       const data = await response.json();
-      setProducts(data);
+      setProducts?.(data);
     } catch (error) {
       return;
     }
