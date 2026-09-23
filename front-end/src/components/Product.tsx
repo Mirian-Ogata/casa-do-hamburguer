@@ -68,7 +68,11 @@ const Product = ({
             <p className="text-base font-bold text-[#F2DAAC]">
               {formatterPrice(price)}
             </p>
-            <ShoppingCart size={16} className="cursor-pointer" />
+            <ShoppingCart
+              size={16}
+              className="cursor-pointer"
+              onClick={() => alert(id)}
+            />
           </div>
         </div>
       </div>
