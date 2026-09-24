@@ -4,6 +4,7 @@ import { formatterPrice } from "../util/formatterPrice";
 import Button from "./Button";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
+import { CartItemContext } from "../context/CartItemContext";
 
 const Product = ({
   id,
@@ -15,6 +16,7 @@ const Product = ({
   setProducts,
 }: ProductProps) => {
   const { user } = useContext(UserContext);
+  const { cartItems, setCartItems } = useContext(CartItemContext);
   const handleDeleteProduct = async (id: string) => {
     try {
       if (!id) {
@@ -47,6 +49,43 @@ const Product = ({
       return;
     }
   };
+
+  const getCartItems = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/get-cart-items", {
+        credentials: "include",
+      });
+      if (!response.ok) {
+        console.log("Erro ao realizar a requisição");
+        return;
+      }
+
+      const data = await response.json();
+      setCartItems(data);
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+  };
+  const newCartItem = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/create-cart-item", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ productId: id }),
+      });
+
+      if (!response.ok) {
+        console.log("deu ruim");
+        return;
+      }
+
+      getCartItems();
+    } catch (error) {
+      return;
+    }
+  };
   return (
     <div className="">
       <div className="flex gap-2.5 text-white">
@@ -71,7 +110,7 @@ const Product = ({
             <ShoppingCart
               size={16}
               className="cursor-pointer"
-              onClick={() => alert(id)}
+              onClick={() => newCartItem()}
             />
           </div>
         </div>

@@ -5,6 +5,7 @@ export type CartItemType = {
   userId: string;
   productId: string;
   product: ProductType;
+  quantity: number;
 };
 export type CartItemsContectType = {
   cartItems: CartItemType[];

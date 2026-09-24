@@ -9,7 +9,7 @@ import Cart from "./Cart";
 const Header = () => {
   const [showCart, setShowCart] = useState<boolean>(false);
   const { user, setUser } = useContext(UserContext);
-  const { cartItems } = useContext(CartItemContext);
+  const { cartItems, setCartItems } = useContext(CartItemContext);
   const location = useLocation();
 
   const handleAuthUser = async () => {
@@ -46,8 +46,26 @@ const Header = () => {
     }
   };
 
+  const getCartItems = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/get-cart-items", {
+        credentials: "include",
+      });
+      if (!response.ok) {
+        console.log("Erro ao realizar a requisição");
+        return;
+      }
+
+      const data = await response.json();
+      setCartItems(data);
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+  };
   useEffect(() => {
     handleAuthUser();
+    getCartItems();
   }, []);
   const getNavItemClass = (path: string) => {
     const baseClass =
@@ -59,6 +77,13 @@ const Header = () => {
       return baseClass;
     }
   };
+
+  let cartQuantity = 0;
+
+  for (let i = 0; i < cartItems.length; i++) {
+    cartQuantity += cartItems[i].quantity;
+  }
+
   return (
     <div className="bg-[#161410]">
       {showCart && <Cart setShowCart={setShowCart} showCart={showCart} />}
@@ -95,7 +120,7 @@ const Header = () => {
                 onClick={() => setShowCart(!showCart)}
               />
               <p className="absolute -top-3 -right-3 flex h-4 w-4 items-center justify-center rounded-full bg-[#F2DAAC] text-sm font-bold text-[#161410]">
-                {cartItems.length}
+                {cartQuantity}
               </p>
             </div>
             <div className="flex items-center gap-3 text-white">
